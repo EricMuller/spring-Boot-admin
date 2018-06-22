@@ -25,13 +25,7 @@
         <spring-boot-admin-starter-client.version>1.5.7</spring-boot-admin-starter-client.version>
     </properties>
 
-
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/de.codecentric/spring-boot-admin-server -->
         <dependency>
             <groupId>de.codecentric</groupId>
@@ -53,15 +47,10 @@
         </dependency>
 
         <!--declare the admin server as a client, for self monitoring -->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>${spring-boot-admin-starter-client.version}</version>
-        </dependency>
-
         <!--<dependency>-->
-        <!--<groupId>com.hazelcast</groupId>-->
-        <!--<artifactId>hazelcast</artifactId>-->
+            <!--<groupId>de.codecentric</groupId>-->
+            <!--<artifactId>spring-boot-admin-starter-client</artifactId>-->
+            <!--<version>${spring-boot-admin-starter-client.version}</version>-->
         <!--</dependency>-->
 
         <dependency>
@@ -94,6 +83,23 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
+                <configuration>
+                    <addResources>true</addResources>
+                    <executable>true</executable>
+                    <embeddedLaunchScriptProperties>
+                        <useStartStopDaemon>false</useStartStopDaemon>
+                    </embeddedLaunchScriptProperties>
+                    <jvmArguments>-Xms256m -Xmx512m</jvmArguments>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
