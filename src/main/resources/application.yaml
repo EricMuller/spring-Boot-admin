@@ -1,12 +1,23 @@
 
 server:
-    address: 127.0.0.1
     port: 9080
+     # use-forward-headers: true deprecated
+    forward-headers-strategy:   FRAMEWORK
 
-#management:
-#   context-path: /metrics
-#   address: 127.0.0.1
-#   port: 9010
-#   security:
-#       enabled: false
+management:
+   context-path: /admin
+
+spring:
+  application:
+    name: admin-server
+
+  boot:
+     admin:
+        context-path: /admin
+
+  security:
+    user:
+      name: ${ADMIN_USER}
+      password: ${ADMIN_PASSWORD}
+
 
